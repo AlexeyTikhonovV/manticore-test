@@ -10,7 +10,7 @@ export const checkAndSetPostsInCache = async (req: Request, res: Response, next:
 		if (postsInCache) return next();
 
 		const { data } = await axios.get(postsUrl);
-		cache.put('posts', data, 1000);
+		cache.put('posts', data, 60000);
 		return next();
 	} catch (err) {
 		return res.json(err);
